@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Eye,
-  EyeOff,
   Check,
   Sparkles,
   Plus,
@@ -45,9 +43,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
   songCount,
   isKhmerUi,
 }) => {
-  const [showApiKey, setShowApiKey] = useState(false);
-  const [customKey, setCustomKey] = useState('');
-
   const languages: LyricsLanguage[] = ['ខ្មែរ', 'English', '中文', 'ไทย', 'តាមពាក្យគន្លឹះ'];
   const lengths: LyricsLength[] = ['ខ្លី', 'មធ្យម', 'វែង', 'វែងខ្លាំង'];
 
@@ -81,46 +76,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <aside className="w-full lg:w-[350px] shrink-0 bg-[#161327] border-r border-[#2b2545] p-4 flex flex-col gap-4 text-slate-200 text-xs overflow-y-auto">
-      {/* 1. Gemini API Key Row */}
-      <div className="space-y-1.5">
-        <div className="flex items-center justify-between text-slate-300">
-          <label className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
-            <Settings2 className="w-3.5 h-3.5 text-purple-400" />
-            <span>Gemini API key</span>
-          </label>
-          <span className="text-[10px] text-emerald-400 font-medium">✓ Active</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="relative flex-1">
-            <input
-              type={showApiKey ? 'text' : 'password'}
-              value={customKey || 'AI_STUDIO_SERVER_INJECTED_KEY_ACTIVE'}
-              onChange={(e) => setCustomKey(e.target.value)}
-              placeholder="Inject from server secret..."
-              className="w-full bg-[#1e1a34] border border-[#3b325c] rounded-lg px-2.5 py-2 text-xs text-purple-200 font-mono tracking-wider focus:outline-none focus:border-purple-500"
-            />
-            <button
-              type="button"
-              onClick={() => setShowApiKey(!showApiKey)}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200"
-              title="Toggle visibility"
-            >
-              {showApiKey ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
-            </button>
-          </div>
-          <div
-            className="w-8 h-8 rounded-lg bg-[#6d28d9] flex items-center justify-center text-white shadow-md shadow-purple-900/40"
-            title="Connected with Google Gemini"
-          >
-            <Check className="w-4 h-4" />
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Model Selector */}
+      {/* 1. Model Selector */}
       <div className="space-y-1">
-        <label className="text-xs font-semibold text-slate-300">
-          {isKhmerUi ? 'ម៉ូដែល' : 'Model'}
+        <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+          <Settings2 className="w-3.5 h-3.5 text-purple-400" />
+          <span>{isKhmerUi ? 'ម៉ូដែល' : 'Model'}</span>
+          <span className="ml-auto text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+            <Check className="w-3 h-3" />
+            {isKhmerUi ? 'ភ្ជាប់រួច' : 'Connected'}
+          </span>
         </label>
         <div className="relative">
           <select
@@ -137,7 +101,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 3. Prompt Keyword Area */}
+      {/* 2. Prompt Keyword Area */}
       <div className="space-y-1.5">
         <label className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
           <Music4 className="w-3.5 h-3.5 text-pink-400" />
@@ -187,7 +151,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 4. Lyrics Language */}
+      {/* 3. Lyrics Language */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-slate-300">
           {isKhmerUi ? 'ភាសា Lyrics' : 'Lyrics Language'}
@@ -213,7 +177,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 5. Lyrics Length */}
+      {/* 4. Lyrics Length */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-slate-300">
           {isKhmerUi ? 'ប្រវែង Lyrics' : 'Lyrics Length'}
@@ -239,7 +203,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 6. Batch Count & Style Limit */}
+      {/* 5. Batch Count & Style Limit */}
       <div className="grid grid-cols-2 gap-3 pt-1">
         <div className="space-y-1">
           <label className="text-[11px] font-semibold text-slate-300">
@@ -280,7 +244,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 7. Big Pink Action Button */}
+      {/* 6. Big Pink Action Button */}
       <button
         type="button"
         disabled={isGenerating}
@@ -300,7 +264,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )}
       </button>
 
-      {/* 8. Secondary Actions */}
+      {/* 7. Secondary Actions */}
       <div className="flex flex-col gap-2 pt-1">
         <div className="flex items-center gap-2">
           {/* Add more button */}
@@ -362,7 +326,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
       </div>
 
-      {/* 9. Status & History banner */}
+      {/* 8. Status & History banner */}
       <div className="mt-auto pt-3 border-t border-[#2b2545] space-y-2">
         {/* Toast / last action notification */}
         {lastActionMessage && (
