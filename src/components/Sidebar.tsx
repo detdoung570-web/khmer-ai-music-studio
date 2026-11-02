@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Check,
   Sparkles,
@@ -43,7 +43,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   songCount,
   isKhmerUi,
 }) => {
-  const languages: LyricsLanguage[] = ['ខ្មែរ', 'English', '中文', 'ไทย', 'តាមពាក្យគន្លឹះ'];
+  // ✅ "ไทย" removed from the array below
+  const languages: LyricsLanguage[] = ['ខ្មែរ', 'English', '中文', 'តាមពាក្យគន្លឹះ'];
   const lengths: LyricsLength[] = ['ខ្លី', 'មធ្យម', 'វែង', 'វែងខ្លាំង'];
 
   const quickPresets = [
@@ -267,7 +268,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* 7. Secondary Actions */}
       <div className="flex flex-col gap-2 pt-1">
         <div className="flex items-center gap-2">
-          {/* Add more button */}
           <button
             type="button"
             disabled={isGenerating}
@@ -278,7 +278,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span>{isKhmerUi ? '+ បង្កើតថែម' : '+ Generate More'}</span>
           </button>
 
-          {/* Auto continuous checkbox */}
           <label className="flex items-center gap-1.5 text-[11px] text-purple-200 cursor-pointer select-none bg-[#221c38] px-2 py-1.5 rounded-lg border border-[#3b325c]">
             <input
               type="checkbox"
@@ -291,7 +290,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         <div className="grid grid-cols-3 gap-1.5">
-          {/* Stop button */}
           <button
             type="button"
             disabled={!isGenerating}
@@ -302,7 +300,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span>{isKhmerUi ? 'បញ្ឈប់' : 'Stop'}</span>
           </button>
 
-          {/* Copy All */}
           <button
             type="button"
             onClick={onCopyAll}
@@ -313,7 +310,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <span>{isKhmerUi ? 'Copy ទាំងអស់' : 'Copy All'}</span>
           </button>
 
-          {/* Save .txt */}
           <button
             type="button"
             onClick={onSaveTxt}
@@ -328,7 +324,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* 8. Status & History banner */}
       <div className="mt-auto pt-3 border-t border-[#2b2545] space-y-2">
-        {/* Toast / last action notification */}
         {lastActionMessage && (
           <div className="bg-[#10b981]/15 border border-[#10b981]/30 rounded-lg px-2.5 py-1.5 text-[11px] text-[#34d399] flex items-center gap-1.5 animate-fadeIn">
             <span>📋</span>
@@ -336,7 +331,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
         )}
 
-        {/* Progress or status */}
         <div className="flex items-center justify-between text-[11px] text-purple-300/80">
           <div className="flex items-center gap-1.5">
             {isGenerating ? (
