@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { Analytics } from '@vercel/analytics/react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { SongCard } from './components/SongCard';
@@ -452,6 +453,7 @@ ${s.lyrics}
         onClose={() => setIsApiModalOpen(false)}
         isKhmerUi={isKhmerUi}
       />
+      <Analytics />
     </div>
   );
 }
