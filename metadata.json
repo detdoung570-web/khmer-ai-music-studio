@@ -1,0 +1,6 @@
+{
+  "name": "Suno Music & Lyrics Generator (Khmer/English)",
+  "description": "AI-powered bulk song lyrics and style generator optimized for Suno. Generate authentic Khmer, English, Thai, Chinese styles with one-click copy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
